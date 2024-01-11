@@ -10,4 +10,8 @@ public record NovoAutorInput(
         @NotBlank @Size(max = 400) String descricao
 ) {
 
+  public Autor toModel() {
+    return new Autor(this.nome, this.email, this.descricao);
+  }
+
 }

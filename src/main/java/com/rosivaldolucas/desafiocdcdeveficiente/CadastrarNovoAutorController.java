@@ -1,5 +1,8 @@
 package com.rosivaldolucas.desafiocdcdeveficiente;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,17 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/autores")
 public class CadastrarNovoAutorController {
 
+  @PersistenceContext
+  private EntityManager entityManager;
+
+  @Transactional
   @PostMapping
   public ResponseEntity<NovoAutorOutput> cadastrar(@RequestBody @Valid final NovoAutorInput novoAutorInput) {
-    final Autor novoAutor = new Autor(novoAutorInput.nome(), novoAutorInput.email(), novoAutorInput.descricao());
+    final Autor novoAutor = novoAutorInput.toModel();
 
-    final NovoAutorOutput novoAutorOutput = new NovoAutorOutput(
-            novoAutor.getId(),
-            novoAutor.getNome(),
-            novoAutor.getEmail(),
-            novoAutor.getDescricao(),
-            novoAutor.getCriadoEm()
-    );
+    this.entityManager.persist(novoAutor);
+
+    final NovoAutorOutput novoAutorOutput = NovoAutorOutput.criar(novoAutor);
 
     return ResponseEntity.status(HttpStatus.CREATED).body(novoAutorOutput);
   }
