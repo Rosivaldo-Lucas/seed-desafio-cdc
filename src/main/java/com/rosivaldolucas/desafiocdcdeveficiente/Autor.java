@@ -1,6 +1,7 @@
 package com.rosivaldolucas.desafiocdcdeveficiente;
 
 import jakarta.persistence.*;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 
@@ -23,6 +24,17 @@ public class Autor {
     this.email = email;
     this.descricao = descricao;
     this.criadoEm = LocalDateTime.now();
+
+    this.validar();
+  }
+
+  private void validar() {
+    if (!StringUtils.hasText(this.nome)) throw new IllegalArgumentException("nome é obrigatório.");
+    if (!StringUtils.hasText(this.email)) throw new IllegalArgumentException("email é obrigatório.");
+    if (!StringUtils.hasText(this.descricao)) throw new IllegalArgumentException("descricao é obrigatório.");
+    if (this.criadoEm == null) throw new IllegalArgumentException("criado em é obrigatório");
+
+    if (this.descricao.length() > 400) throw new IllegalArgumentException("descrição deve ser menor ou igual a 400 caracteres.");
   }
 
   public Long getId() {
