@@ -1,5 +1,6 @@
-package com.rosivaldolucas.desafiocdcdeveficiente;
+package com.rosivaldolucas.desafiocdcdeveficiente.autor;
 
+import com.rosivaldolucas.desafiocdcdeveficiente.autor.Autor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

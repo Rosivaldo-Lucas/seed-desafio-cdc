@@ -1,4 +1,4 @@
-package com.rosivaldolucas.desafiocdcdeveficiente;
+package com.rosivaldolucas.desafiocdcdeveficiente.autor;
 
 import jakarta.persistence.*;
 import org.springframework.util.StringUtils;

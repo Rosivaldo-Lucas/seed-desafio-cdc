@@ -1,5 +1,8 @@
-package com.rosivaldolucas.desafiocdcdeveficiente;
+package com.rosivaldolucas.desafiocdcdeveficiente.autor;
 
+import com.rosivaldolucas.desafiocdcdeveficiente.autor.Autor;
+import com.rosivaldolucas.desafiocdcdeveficiente.autor.AutorRepository;
+import com.rosivaldolucas.desafiocdcdeveficiente.autor.NovoAutorInput;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
