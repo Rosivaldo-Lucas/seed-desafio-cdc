@@ -1,6 +1,6 @@
 package com.rosivaldolucas.desafiocdcdeveficiente.categoria;
 
-import com.rosivaldolucas.desafiocdcdeveficiente.UniqueValue;
+import com.rosivaldolucas.desafiocdcdeveficiente.validacao.UniqueValue;
 import jakarta.validation.constraints.NotBlank;
 
 public record NovaCategoriaInput(

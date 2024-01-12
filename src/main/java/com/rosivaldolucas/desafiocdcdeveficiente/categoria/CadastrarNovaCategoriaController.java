@@ -6,8 +6,10 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/categorias")
@@ -15,17 +17,6 @@ public class CadastrarNovaCategoriaController {
 
   @PersistenceContext
   private EntityManager entityManager;
-
-  private final ProibeNomeDuplicadoCategoriaValidator proibeNomeDuplicadoCategoriaValidator;
-
-  public CadastrarNovaCategoriaController(final ProibeNomeDuplicadoCategoriaValidator proibeNomeDuplicadoCategoriaValidator) {
-    this.proibeNomeDuplicadoCategoriaValidator = proibeNomeDuplicadoCategoriaValidator;
-  }
-
-  @InitBinder
-  public void initBinder(final WebDataBinder webDataBinder) {
-    webDataBinder.addValidators(this.proibeNomeDuplicadoCategoriaValidator);
-  }
 
   @Transactional
   @PostMapping

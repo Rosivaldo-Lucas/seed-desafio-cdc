@@ -1,6 +1,6 @@
 package com.rosivaldolucas.desafiocdcdeveficiente.autor;
 
-import com.rosivaldolucas.desafiocdcdeveficiente.UniqueValue;
+import com.rosivaldolucas.desafiocdcdeveficiente.validacao.UniqueValue;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

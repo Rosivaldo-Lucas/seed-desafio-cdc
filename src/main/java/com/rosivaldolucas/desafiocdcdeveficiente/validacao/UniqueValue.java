@@ -1,4 +1,4 @@
-package com.rosivaldolucas.desafiocdcdeveficiente;
+package com.rosivaldolucas.desafiocdcdeveficiente.validacao;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
