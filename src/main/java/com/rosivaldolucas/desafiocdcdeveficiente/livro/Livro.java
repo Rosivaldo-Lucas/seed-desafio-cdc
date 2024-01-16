@@ -29,13 +29,15 @@ public class Livro {
 
   private LocalDate dataPublicacao;
 
-  @OneToOne
+  @ManyToOne
   @JoinColumn(name = "ID_AUTOR")
   private Autor autor;
 
-  @OneToOne
+  @ManyToOne
   @JoinColumn(name = "ID_CATEGORIA")
   private Categoria categoria;
+
+  protected Livro() { }
 
   private Livro(final Long id, final String isbn, final String titulo, final String resumo, final String sumario, final BigDecimal preco, final Integer numeroPaginas, final LocalDate dataPublicacao, final Autor autor, final Categoria categoria) {
     this.id = id;
@@ -56,6 +58,14 @@ public class Livro {
 
   public Long getId() {
     return id;
+  }
+
+  public String getTitulo() {
+    return titulo;
+  }
+
+  public BigDecimal getPreco() {
+    return preco;
   }
 
 }
