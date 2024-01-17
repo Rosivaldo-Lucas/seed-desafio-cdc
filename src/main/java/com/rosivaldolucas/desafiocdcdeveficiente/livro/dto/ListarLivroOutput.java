@@ -1,5 +1,6 @@
-package com.rosivaldolucas.desafiocdcdeveficiente.livro;
+package com.rosivaldolucas.desafiocdcdeveficiente.livro.dto;
 
+import com.rosivaldolucas.desafiocdcdeveficiente.livro.Livro;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;

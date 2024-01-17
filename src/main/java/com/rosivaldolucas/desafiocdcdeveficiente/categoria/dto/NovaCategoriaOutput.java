@@ -1,4 +1,6 @@
-package com.rosivaldolucas.desafiocdcdeveficiente.categoria;
+package com.rosivaldolucas.desafiocdcdeveficiente.categoria.dto;
+
+import com.rosivaldolucas.desafiocdcdeveficiente.categoria.Categoria;
 
 public record NovaCategoriaOutput(
         Long id,

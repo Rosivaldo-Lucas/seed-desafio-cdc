@@ -1,4 +1,4 @@
-package com.rosivaldolucas.desafiocdcdeveficiente.validacao;
+package com.rosivaldolucas.desafiocdcdeveficiente.validacao.uniquevalue;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -6,12 +6,12 @@ import jakarta.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = { ExistsIdValidator.class })
+@Constraint(validatedBy = { UniqueValueValidator.class })
 @Target({ ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ExistsId {
+public @interface UniqueValue {
 
-  String message() default "{com.rosivaldolucas.beanvalidation.existsid}";
+  String message() default "{com.rosivaldolucas.beanvalidation.uniquevalue}";
 
   Class<?>[] groups() default { };
 

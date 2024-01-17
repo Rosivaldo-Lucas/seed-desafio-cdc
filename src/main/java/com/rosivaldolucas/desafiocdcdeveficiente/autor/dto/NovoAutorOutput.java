@@ -1,4 +1,6 @@
-package com.rosivaldolucas.desafiocdcdeveficiente.autor;
+package com.rosivaldolucas.desafiocdcdeveficiente.autor.dto;
+
+import com.rosivaldolucas.desafiocdcdeveficiente.autor.Autor;
 
 import java.time.LocalDateTime;
 

@@ -1,5 +1,8 @@
-package com.rosivaldolucas.desafiocdcdeveficiente.livro;
+package com.rosivaldolucas.desafiocdcdeveficiente.livro.controller;
 
+import com.rosivaldolucas.desafiocdcdeveficiente.livro.Livro;
+import com.rosivaldolucas.desafiocdcdeveficiente.livro.dto.NovoLivroInput;
+import com.rosivaldolucas.desafiocdcdeveficiente.livro.dto.NovoLivroOutput;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;

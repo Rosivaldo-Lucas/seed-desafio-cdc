@@ -1,5 +1,8 @@
-package com.rosivaldolucas.desafiocdcdeveficiente.categoria;
+package com.rosivaldolucas.desafiocdcdeveficiente.categoria.controller;
 
+import com.rosivaldolucas.desafiocdcdeveficiente.categoria.Categoria;
+import com.rosivaldolucas.desafiocdcdeveficiente.categoria.dto.NovaCategoriaInput;
+import com.rosivaldolucas.desafiocdcdeveficiente.categoria.dto.NovaCategoriaOutput;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;

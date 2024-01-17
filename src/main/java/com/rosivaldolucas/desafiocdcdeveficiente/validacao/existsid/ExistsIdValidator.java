@@ -1,13 +1,12 @@
-package com.rosivaldolucas.desafiocdcdeveficiente.validacao;
+package com.rosivaldolucas.desafiocdcdeveficiente.validacao.existsid;
 
+import com.rosivaldolucas.desafiocdcdeveficiente.validacao.existsid.ExistsId;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.util.Assert;
-
-import java.util.List;
 
 public class ExistsIdValidator implements ConstraintValidator<ExistsId, Object> {
 

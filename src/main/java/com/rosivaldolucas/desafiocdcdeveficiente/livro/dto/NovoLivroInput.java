@@ -1,10 +1,11 @@
-package com.rosivaldolucas.desafiocdcdeveficiente.livro;
+package com.rosivaldolucas.desafiocdcdeveficiente.livro.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.rosivaldolucas.desafiocdcdeveficiente.autor.Autor;
 import com.rosivaldolucas.desafiocdcdeveficiente.categoria.Categoria;
-import com.rosivaldolucas.desafiocdcdeveficiente.validacao.ExistsId;
-import com.rosivaldolucas.desafiocdcdeveficiente.validacao.UniqueValue;
+import com.rosivaldolucas.desafiocdcdeveficiente.livro.Livro;
+import com.rosivaldolucas.desafiocdcdeveficiente.validacao.existsid.ExistsId;
+import com.rosivaldolucas.desafiocdcdeveficiente.validacao.uniquevalue.UniqueValue;
 import jakarta.persistence.EntityManager;
 import jakarta.validation.constraints.*;
 

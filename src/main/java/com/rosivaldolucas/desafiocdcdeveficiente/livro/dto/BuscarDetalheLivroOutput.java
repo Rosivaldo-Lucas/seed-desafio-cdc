@@ -1,6 +1,7 @@
-package com.rosivaldolucas.desafiocdcdeveficiente.livro;
+package com.rosivaldolucas.desafiocdcdeveficiente.livro.dto;
 
-import com.rosivaldolucas.desafiocdcdeveficiente.autor.BuscarDetalheSiteAutorOutput;
+import com.rosivaldolucas.desafiocdcdeveficiente.autor.dto.BuscarDetalheSiteAutorOutput;
+import com.rosivaldolucas.desafiocdcdeveficiente.livro.Livro;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

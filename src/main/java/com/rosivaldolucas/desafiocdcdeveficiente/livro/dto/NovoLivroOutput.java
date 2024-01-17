@@ -1,4 +1,6 @@
-package com.rosivaldolucas.desafiocdcdeveficiente.livro;
+package com.rosivaldolucas.desafiocdcdeveficiente.livro.dto;
+
+import com.rosivaldolucas.desafiocdcdeveficiente.livro.Livro;
 
 public record NovoLivroOutput(
         Long id

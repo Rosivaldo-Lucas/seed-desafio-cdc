@@ -1,6 +1,6 @@
-package com.rosivaldolucas.desafiocdcdeveficiente.validacao;
+package com.rosivaldolucas.desafiocdcdeveficiente.validacao.uniquevalue;
 
-import com.rosivaldolucas.desafiocdcdeveficiente.validacao.UniqueValue;
+import com.rosivaldolucas.desafiocdcdeveficiente.validacao.uniquevalue.UniqueValue;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
