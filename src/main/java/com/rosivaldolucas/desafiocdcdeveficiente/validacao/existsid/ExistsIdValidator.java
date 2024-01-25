@@ -24,6 +24,8 @@ public class ExistsIdValidator implements ConstraintValidator<ExistsId, Object> 
 
   @Override
   public boolean isValid(final Object value, final ConstraintValidatorContext context) {
+    if (value == null) return true;
+
     final Query query = this.entityManager.createQuery("SELECT CASE WHEN EXISTS (" +
             "   SELECT 1 FROM " + this.domainClazz.getName() + "   WHERE " + this.domainAttribute + " = :value" +
             ") THEN true ELSE false END"
