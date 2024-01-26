@@ -4,6 +4,7 @@ import com.rosivaldolucas.desafiocdcdeveficiente.paisestado.Estado;
 import com.rosivaldolucas.desafiocdcdeveficiente.paisestado.dto.NovoEstadoInput;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ public class CadastrarNovoEstadoController {
   @PersistenceContext
   private EntityManager entityManager;
 
+  @Transactional
   @PostMapping
   public ResponseEntity<Void> cadastrar(@RequestBody @Valid final NovoEstadoInput input) {
     final Estado novoEstado = input.toModel(this.entityManager);

@@ -4,6 +4,7 @@ import com.rosivaldolucas.desafiocdcdeveficiente.paisestado.dto.NovoPaisInput;
 import com.rosivaldolucas.desafiocdcdeveficiente.paisestado.Pais;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ public class CadastrarNovoPaisController {
   @PersistenceContext
   private EntityManager entityManager;
 
+  @Transactional
   @PostMapping
   public ResponseEntity<Void> cadastrar(@RequestBody @Valid final NovoPaisInput input) {
     final Pais novoPais = input.toModel();
