@@ -1,5 +1,6 @@
 package com.rosivaldolucas.desafiocdcdeveficiente.compra;
 
+import com.rosivaldolucas.desafiocdcdeveficiente.cupom.Cupom;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -41,6 +42,10 @@ public class Pedido {
 
     public boolean totalIgual(final BigDecimal total) {
         return total.compareTo(this.total) == 0;
+    }
+
+    public void aplicarCupom(final Cupom cupom) {
+
     }
 
     public BigDecimal obterTotal() {

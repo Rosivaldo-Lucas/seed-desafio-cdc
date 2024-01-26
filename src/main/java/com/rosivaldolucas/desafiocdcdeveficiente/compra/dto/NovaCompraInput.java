@@ -2,6 +2,7 @@ package com.rosivaldolucas.desafiocdcdeveficiente.compra.dto;
 
 import com.rosivaldolucas.desafiocdcdeveficiente.compra.Compra;
 import com.rosivaldolucas.desafiocdcdeveficiente.compra.Pedido;
+import com.rosivaldolucas.desafiocdcdeveficiente.cupom.Cupom;
 import com.rosivaldolucas.desafiocdcdeveficiente.paisestado.Estado;
 import com.rosivaldolucas.desafiocdcdeveficiente.paisestado.Pais;
 import com.rosivaldolucas.desafiocdcdeveficiente.validacao.existsid.ExistsId;
@@ -43,7 +44,8 @@ public record NovaCompraInput(
         Long estadoId,
         @NotNull
         @Valid
-        NovaCompraPedidoInput pedido
+        NovaCompraPedidoInput pedido,
+        String codigoCupom
 ) {
 
     public Compra toModel(final EntityManager entityManager) {
@@ -57,6 +59,12 @@ public record NovaCompraInput(
             final Estado estado = entityManager.find(Estado.class, this.estadoId);
 
             novaCompra.adicionarEstado(estado);
+        }
+
+        if (StringUtils.hasText(this.codigoCupom)) {
+            final Cupom cupom = entityManager.find(Cupom.class, this.codigoCupom);
+
+            novaCompra.aplicarCupom(cupom);
         }
 
         return novaCompra;

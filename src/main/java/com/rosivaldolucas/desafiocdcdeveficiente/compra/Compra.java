@@ -1,5 +1,6 @@
 package com.rosivaldolucas.desafiocdcdeveficiente.compra;
 
+import com.rosivaldolucas.desafiocdcdeveficiente.cupom.Cupom;
 import com.rosivaldolucas.desafiocdcdeveficiente.paisestado.Estado;
 import com.rosivaldolucas.desafiocdcdeveficiente.paisestado.Pais;
 import jakarta.persistence.*;
@@ -35,6 +36,9 @@ public class Compra {
     @OneToOne(mappedBy = "compra", cascade = CascadeType.PERSIST)
     private Pedido pedido;
 
+    @Embedded
+    private CupomAplicado cupomAplicado;
+
     protected Compra() { }
 
     private Compra(final Long id, final String nome, final String sobrenome, final String email, final String documento, final String endereco, final String complemento, final String cidade, final String cep, final String telefone, final Pais pais, final Function<Compra, Pedido> funcaoCriacaoPedido) {
@@ -58,6 +62,13 @@ public class Compra {
 
     public void adicionarEstado(final Estado estado) {
         this.estado = estado;
+    }
+
+    public void aplicarCupom(final Cupom cupom) {
+        if (!cupom.dataValidadeValida()) throw new IllegalArgumentException("cupom expirado.");
+        if (this.cupomAplicado != null) throw new IllegalArgumentException("cupom não pode ser alterado.");
+
+        this.cupomAplicado = CupomAplicado.criar(cupom);
     }
 
 }

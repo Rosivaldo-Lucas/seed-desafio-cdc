@@ -2,6 +2,7 @@ package com.rosivaldolucas.desafiocdcdeveficiente.compra.controller;
 
 import com.rosivaldolucas.desafiocdcdeveficiente.compra.Compra;
 import com.rosivaldolucas.desafiocdcdeveficiente.compra.dto.NovaCompraInput;
+import com.rosivaldolucas.desafiocdcdeveficiente.validacao.cupom.CupomValidator;
 import com.rosivaldolucas.desafiocdcdeveficiente.validacao.documentoCpfCnpj.DocumentoCpfCnpjValidator;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -21,7 +22,7 @@ public class CadastrarNovaCompraController {
 
     @InitBinder
     public void init(final WebDataBinder webDataBinder) {
-        webDataBinder.addValidators(new DocumentoCpfCnpjValidator());
+        webDataBinder.addValidators(new DocumentoCpfCnpjValidator(), new CupomValidator());
     }
 
     @Transactional
