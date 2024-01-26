@@ -1,4 +1,4 @@
-package com.rosivaldolucas.desafiocdcdeveficiente.compra.dto;
+package com.rosivaldolucas.desafiocdcdeveficiente.compra.dto.cadastrarnovacompra;
 
 import com.rosivaldolucas.desafiocdcdeveficiente.compra.Item;
 import com.rosivaldolucas.desafiocdcdeveficiente.livro.Livro;

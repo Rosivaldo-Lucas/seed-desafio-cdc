@@ -1,8 +1,9 @@
-package com.rosivaldolucas.desafiocdcdeveficiente.compra.dto;
+package com.rosivaldolucas.desafiocdcdeveficiente.compra.dto.cadastrarnovacompra;
 
 import com.rosivaldolucas.desafiocdcdeveficiente.compra.Compra;
 import com.rosivaldolucas.desafiocdcdeveficiente.compra.Pedido;
 import com.rosivaldolucas.desafiocdcdeveficiente.cupom.Cupom;
+import com.rosivaldolucas.desafiocdcdeveficiente.cupom.repository.CupomRepository;
 import com.rosivaldolucas.desafiocdcdeveficiente.paisestado.Estado;
 import com.rosivaldolucas.desafiocdcdeveficiente.paisestado.Pais;
 import com.rosivaldolucas.desafiocdcdeveficiente.validacao.existsid.ExistsId;
@@ -15,6 +16,7 @@ import org.hibernate.validator.internal.constraintvalidators.hv.br.CNPJValidator
 import org.hibernate.validator.internal.constraintvalidators.hv.br.CPFValidator;
 import org.springframework.util.StringUtils;
 
+import java.util.Optional;
 import java.util.function.Function;
 
 public record NovaCompraInput(
@@ -48,7 +50,7 @@ public record NovaCompraInput(
         String codigoCupom
 ) {
 
-    public Compra toModel(final EntityManager entityManager) {
+    public Compra toModel(final EntityManager entityManager, final CupomRepository cupomRepository) {
         final Pais pais = entityManager.find(Pais.class, this.paisId);
 
         final Function<Compra, Pedido> funcaoCriacaoPedido = pedido.toModel(entityManager);
@@ -62,7 +64,7 @@ public record NovaCompraInput(
         }
 
         if (StringUtils.hasText(this.codigoCupom)) {
-            final Cupom cupom = entityManager.find(Cupom.class, this.codigoCupom);
+            final Cupom cupom = cupomRepository.findByCodigo(this.codigoCupom).orElseThrow();
 
             novaCompra.aplicarCupom(cupom);
         }

@@ -1,7 +1,8 @@
 package com.rosivaldolucas.desafiocdcdeveficiente.validacao.cupom;
 
-import com.rosivaldolucas.desafiocdcdeveficiente.compra.dto.NovaCompraInput;
+import com.rosivaldolucas.desafiocdcdeveficiente.compra.dto.cadastrarnovacompra.NovaCompraInput;
 import com.rosivaldolucas.desafiocdcdeveficiente.cupom.Cupom;
+import com.rosivaldolucas.desafiocdcdeveficiente.cupom.repository.CupomRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.lang.NonNull;
@@ -9,11 +10,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.util.Optional;
+
 @Component
 public class CupomValidator implements Validator {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    private final CupomRepository cupomRepository;
+
+    public CupomValidator(final CupomRepository cupomRepository) {
+        this.cupomRepository = cupomRepository;
+    }
 
     @Override
     public boolean supports(@NonNull final Class<?> clazz) {
@@ -26,15 +32,15 @@ public class CupomValidator implements Validator {
 
         final NovaCompraInput input = (NovaCompraInput) target;
 
-        final Cupom cupom = this.entityManager.find(Cupom.class, input.codigoCupom());
+        final Optional<Cupom> cupomOptional = this.cupomRepository.findByCodigo(input.codigoCupom());
 
-        if (cupom == null) {
+        if (cupomOptional.isEmpty()) {
             errors.rejectValue("cupom", null, "cupom não encontrado.");
 
             return;
         }
 
-        if (!cupom.dataValidadeValida()) {
+        if (!cupomOptional.get().dataValidadeValida()) {
             errors.rejectValue("cupom", null, "cupom expirado.");
         }
     }

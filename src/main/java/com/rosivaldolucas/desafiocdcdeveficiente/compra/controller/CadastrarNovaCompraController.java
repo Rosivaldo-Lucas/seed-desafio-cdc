@@ -1,7 +1,8 @@
 package com.rosivaldolucas.desafiocdcdeveficiente.compra.controller;
 
 import com.rosivaldolucas.desafiocdcdeveficiente.compra.Compra;
-import com.rosivaldolucas.desafiocdcdeveficiente.compra.dto.NovaCompraInput;
+import com.rosivaldolucas.desafiocdcdeveficiente.compra.dto.cadastrarnovacompra.NovaCompraInput;
+import com.rosivaldolucas.desafiocdcdeveficiente.cupom.repository.CupomRepository;
 import com.rosivaldolucas.desafiocdcdeveficiente.validacao.cupom.CupomValidator;
 import com.rosivaldolucas.desafiocdcdeveficiente.validacao.documentoCpfCnpj.DocumentoCpfCnpjValidator;
 import jakarta.persistence.EntityManager;
@@ -20,15 +21,26 @@ public class CadastrarNovaCompraController {
     @PersistenceContext
     private EntityManager entityManager;
 
+    private final DocumentoCpfCnpjValidator documentoCpfCnpjValidator;
+    private final CupomValidator cupomValidator;
+
+    private final CupomRepository cupomRepository;
+
+    public CadastrarNovaCompraController(final DocumentoCpfCnpjValidator documentoCpfCnpjValidator, final CupomValidator cupomValidator, final CupomRepository cupomRepository) {
+        this.documentoCpfCnpjValidator = documentoCpfCnpjValidator;
+        this.cupomValidator = cupomValidator;
+        this.cupomRepository = cupomRepository;
+    }
+
     @InitBinder
     public void init(final WebDataBinder webDataBinder) {
-        webDataBinder.addValidators(new DocumentoCpfCnpjValidator(), new CupomValidator());
+        webDataBinder.addValidators(this.documentoCpfCnpjValidator, this.cupomValidator);
     }
 
     @Transactional
     @PostMapping
     public ResponseEntity<Void> cadastrar(@RequestBody @Valid final NovaCompraInput input) {
-        final Compra novaCompra = input.toModel(this.entityManager);
+        final Compra novaCompra = input.toModel(this.entityManager, this.cupomRepository);
 
         entityManager.persist(novaCompra);
 

@@ -4,6 +4,8 @@ import com.rosivaldolucas.desafiocdcdeveficiente.cupom.Cupom;
 import com.rosivaldolucas.desafiocdcdeveficiente.cupom.dto.NovoCupomInput;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,8 +20,9 @@ public class CadastrarNovoCupomController {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Transactional
     @PostMapping
-    public ResponseEntity<Void> cadastrar(@RequestBody final NovoCupomInput input) {
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid final NovoCupomInput input) {
         final Cupom novoCupom = input.toModel();
 
         this.entityManager.persist(novoCupom);

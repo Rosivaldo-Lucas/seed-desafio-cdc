@@ -1,6 +1,6 @@
 package com.rosivaldolucas.desafiocdcdeveficiente.validacao.documentoCpfCnpj;
 
-import com.rosivaldolucas.desafiocdcdeveficiente.compra.dto.NovaCompraInput;
+import com.rosivaldolucas.desafiocdcdeveficiente.compra.dto.cadastrarnovacompra.NovaCompraInput;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

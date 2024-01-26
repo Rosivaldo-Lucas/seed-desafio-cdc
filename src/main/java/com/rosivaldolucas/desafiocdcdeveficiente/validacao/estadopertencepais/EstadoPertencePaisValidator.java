@@ -1,6 +1,6 @@
 package com.rosivaldolucas.desafiocdcdeveficiente.validacao.estadopertencepais;
 
-import com.rosivaldolucas.desafiocdcdeveficiente.compra.dto.NovaCompraInput;
+import com.rosivaldolucas.desafiocdcdeveficiente.compra.dto.cadastrarnovacompra.NovaCompraInput;
 import com.rosivaldolucas.desafiocdcdeveficiente.paisestado.Estado;
 import com.rosivaldolucas.desafiocdcdeveficiente.paisestado.Pais;
 import jakarta.persistence.EntityManager;

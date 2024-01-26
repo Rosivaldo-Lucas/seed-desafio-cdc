@@ -1,9 +1,9 @@
 package com.rosivaldolucas.desafiocdcdeveficiente.compra;
 
-import com.rosivaldolucas.desafiocdcdeveficiente.cupom.Cupom;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +16,8 @@ public class Pedido {
     private Long id;
 
     private BigDecimal total;
+
+    private BigDecimal totalFinal;
 
     @ElementCollection
     private final List<Item> itens = new ArrayList<>();
@@ -44,12 +46,19 @@ public class Pedido {
         return total.compareTo(this.total) == 0;
     }
 
-    public void aplicarCupom(final Cupom cupom) {
+    public void aplicarPercentualDesconto(final BigDecimal percentualDesconto) {
+        final BigDecimal cemPorCento = BigDecimal.valueOf(100);
+        final BigDecimal valorDesconto = this.total.multiply(percentualDesconto.divide(cemPorCento, RoundingMode.HALF_UP));
 
+        this.totalFinal = this.total.subtract(valorDesconto);
     }
 
     public BigDecimal obterTotal() {
         return this.total;
+    }
+
+    public BigDecimal obterTotalFinal() {
+        return this.totalFinal;
     }
 
     private void calcularTotalItens() {
@@ -60,6 +69,7 @@ public class Pedido {
         }
 
         this.total = totalItens;
+        this.totalFinal = totalItens;
     }
 
 }

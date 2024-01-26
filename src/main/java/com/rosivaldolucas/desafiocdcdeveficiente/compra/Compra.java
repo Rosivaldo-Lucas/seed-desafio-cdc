@@ -69,6 +69,20 @@ public class Compra {
         if (this.cupomAplicado != null) throw new IllegalArgumentException("cupom não pode ser alterado.");
 
         this.cupomAplicado = CupomAplicado.criar(cupom);
+
+        this.pedido.aplicarPercentualDesconto(this.cupomAplicado.getPercentualDescontoMomento());
+    }
+
+    public boolean isCupomAplicado() {
+        return this.cupomAplicado != null;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
     }
 
 }

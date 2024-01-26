@@ -29,4 +29,12 @@ public class CupomAplicado {
         return new CupomAplicado(cupom);
     }
 
+    public BigDecimal getPercentualDescontoMomento() {
+        return percentualDescontoMomento;
+    }
+
+    public LocalDate getDataValidadeMomento() {
+        return dataValidadeMomento;
+    }
+
 }
