@@ -8,6 +8,7 @@ import com.rosivaldolucas.desafiocdcdeveficiente.validacao.existsid.ExistsId;
 import com.rosivaldolucas.desafiocdcdeveficiente.validacao.uniquevalue.UniqueValue;
 import jakarta.persistence.EntityManager;
 import jakarta.validation.constraints.*;
+import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -53,6 +54,9 @@ public record NovoLivroInput(
   public Livro toModel(final EntityManager entityManager) {
     final Autor autor = entityManager.find(Autor.class, autorId);
     final Categoria categoria = entityManager.find(Categoria.class, categoriaId);
+
+      Assert.state(autor != null, "livro não pode ser cadastrado sem autor");
+      Assert.state(categoria != null, "livro não pode ser cadastrado sem categoria");
 
     return Livro.criar(isbn, titulo, resumo, sumario, preco, numeroPaginas, dataPublicacao, autor, categoria);
   }

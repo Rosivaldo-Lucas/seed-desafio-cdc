@@ -16,7 +16,7 @@ public record NovoAutorInput(
 ) {
 
   public Autor toModel() {
-    return new Autor(this.nome, this.email, this.descricao);
+    return Autor.criar(this.nome, this.email, this.descricao);
   }
 
 }

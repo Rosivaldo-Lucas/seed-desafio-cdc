@@ -19,13 +19,18 @@ public class Autor {
 
   protected Autor() { }
 
-  public Autor(final String nome, final String email, final String descricao) {
+  private Autor(final Long id, final String nome, final String email, final String descricao) {
+    this.id = id;
     this.nome = nome;
     this.email = email;
     this.descricao = descricao;
     this.criadoEm = LocalDateTime.now();
 
     this.validar();
+  }
+
+  public static Autor criar(final String nome, final String email, final String descricao) {
+    return new Autor(null, nome, email, descricao);
   }
 
   private void validar() {
